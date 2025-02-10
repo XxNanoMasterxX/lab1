@@ -23,16 +23,15 @@
   <FILE>lab1nuevo.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <LOOP><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>33</LINE></LOOP>
-  <DELAY><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>74</LINE></DELAY>
-  <INCRE1><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>50</LINE></INCRE1>
-  <DECRE1><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>61</LINE></DECRE1>
-  <end><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>57</LINE></end>
-  <INCRE2><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>67</LINE></INCRE2>
-  <DECRE2><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>70</LINE></DECRE2>
-  <SUBDELAY1><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>76</LINE></SUBDELAY1>
-  <SUBDELAY2><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>81</LINE></SUBDELAY2>
-  <SUBDELAY3><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>86</LINE></SUBDELAY3>
-  <SUBDELAY4><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>91</LINE></SUBDELAY4>
+  <LOOP><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>34</LINE></LOOP>
+  <DELAY><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>103</LINE></DELAY>
+  <INCRE1><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>55</LINE></INCRE1>
+  <DECRE1><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>64</LINE></DECRE1>
+  <INCRE2><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>73</LINE></INCRE2>
+  <DECRE2><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>88</LINE></DECRE2>
+  <SUBDELAY1><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>105</LINE></SUBDELAY1>
+  <SUBDELAY2><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>110</LINE></SUBDELAY2>
+  <SUBDELAY3><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>115</LINE></SUBDELAY3>
+  <SUBDELAY4><FILE>C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm</FILE><LINE>120</LINE></SUBDELAY4>
  </LABELS>
 </ASSEMBLER_INFO>
