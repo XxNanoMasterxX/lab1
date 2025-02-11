@@ -21,15 +21,17 @@ OUT SPH, R16 // Cargar 0x08 a SPH
 ; R18 Va a tener la cuenta 
 
 //Setup
-//PortB como entrada
+//PortC como entrada
 LDI R16, 0x00
 OUT DDRC, R16
 LDI R16, 0xFF
-OUT PORTC, R16 // Port B como pull up
-OUT DDRD, R16 //
+OUT PORTC, R16 // Port C como pull up
+OUT DDRD, R16 //D como salida
+OUT DDRB, R16 //PortB como salida
 LDI R16, 0x00
 LDI R17, 0xff
 LDI R22, 0x00
+ldi R23, 0x00
 
 LOOP:
 IN R16, PINC //Lectura del pinb
@@ -49,6 +51,8 @@ SBIS PINC, 2
 CALL INCRE2
 SBIS PINC, 3
 CALL DECRE2
+SBIS PINC, 4
+CALL SUMAMUMA
 JMP LOOP
 
 // Funcion para incrementar
@@ -97,6 +101,13 @@ ROL R22
 MOV R20, R22
 ADD R20, R18
 OUT PIND, R20
+RET
+
+SUMAMUMA:
+OUT PINB, R23
+MOV R23, R21
+ADD R23, R18
+OUT PINB, R23
 RET
 
 //El delay lol

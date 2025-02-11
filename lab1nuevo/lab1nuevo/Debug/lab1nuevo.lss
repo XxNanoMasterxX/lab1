@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm Sun Feb 09 23:11:12 2025
+AVRASM ver. 2.2.8  C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm Mon Feb 10 12:23:27 2025
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm(9): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1052,106 +1052,117 @@ C:\Users\laloj\Documents\lab1\lab1nuevo\lab1nuevo\main.asm(9): Including file 'C
                                  ; R18 Va a tener la cuenta 
                                  
                                  //Setup
-                                 //PortB como entrada
+                                 //PortC como entrada
 000004 e000                      LDI R16, 0x00
 000005 b907                      OUT DDRC, R16
 000006 ef0f                      LDI R16, 0xFF
-000007 b908                      OUT PORTC, R16 // Port B como pull up
-000008 b90a                      OUT DDRD, R16 //
-000009 e000                      LDI R16, 0x00
-00000a ef1f                      LDI R17, 0xff
-00000b e060                      LDI R22, 0x00
+000007 b908                      OUT PORTC, R16 // Port C como pull up
+000008 b90a                      OUT DDRD, R16 //D como salida
+000009 b904                      OUT DDRB, R16 //PortB como salida
+00000a e000                      LDI R16, 0x00
+00000b ef1f                      LDI R17, 0xff
+00000c e060                      LDI R22, 0x00
+00000d e070                      ldi R23, 0x00
                                  
                                  LOOP:
-00000c b106                      IN R16, PINC //Lectura del pinb
-00000d 1710                      CP R17, R16
-00000e f3e9                      BREQ LOOP
-00000f 940e 0049                 CALL DELAY
-000011 b106                      IN R16, PINC
-000012 1710                      CP R17, R16
-000013 f3c1                      BREQ LOOP
-000014 2f10                      MOV R17, R16
+00000e b106                      IN R16, PINC //Lectura del pinb
+00000f 1710                      CP R17, R16
+000010 f3e9                      BREQ LOOP
+000011 940e 0053                 CALL DELAY
+000013 b106                      IN R16, PINC
+000014 1710                      CP R17, R16
+000015 f3c1                      BREQ LOOP
+000016 2f10                      MOV R17, R16
                                  ;Aqui comienza la logica para sumar o restar
-000015 9b30                      SBIS PINC, 0
-000016 940e 0023                 CALL INCRE1
-000018 9b31                      SBIS PINC, 1
-000019 940e 002a                 CALL DECRE1
-00001b 9b32                      SBIS PINC, 2
-00001c 940e 0031                 CALL INCRE2
-00001e 9b33                      SBIS PINC, 3
-00001f 940e 003d                 CALL DECRE2
-000021 940c 000c                 JMP LOOP
+000017 9b30                      SBIS PINC, 0
+000018 940e 0028                 CALL INCRE1
+00001a 9b31                      SBIS PINC, 1
+00001b 940e 002f                 CALL DECRE1
+00001d 9b32                      SBIS PINC, 2
+00001e 940e 0036                 CALL INCRE2
+000020 9b33                      SBIS PINC, 3
+000021 940e 0042                 CALL DECRE2
+000023 9b34                      SBIS PINC, 4
+000024 940e 004e                 CALL SUMAMUMA
+000026 940c 000e                 JMP LOOP
                                  
                                  // Funcion para incrementar
                                  INCRE1:
-000023 b949                      OUT PIND, R20
-000024 9523                      INC R18
-000025 702f                      ANDI R18, 0x0F
-000026 2f42                      MOV R20, R18
-000027 0f46                      ADD R20, R22
 000028 b949                      OUT PIND, R20
-000029 9508                      RET
+000029 9523                      INC R18
+00002a 702f                      ANDI R18, 0x0F
+00002b 2f42                      MOV R20, R18
+00002c 0f46                      ADD R20, R22
+00002d b949                      OUT PIND, R20
+00002e 9508                      RET
                                  
                                  DECRE1:
-00002a b949                      OUT PIND, R20
-00002b 952a                      DEC R18
-00002c 702f                      ANDI R18, 0x0F
-00002d 2f42                      MOV R20, R18
-00002e 0f46                      ADD R20, R22
 00002f b949                      OUT PIND, R20
-000030 9508                      RET
+000030 952a                      DEC R18
+000031 702f                      ANDI R18, 0x0F
+000032 2f42                      MOV R20, R18
+000033 0f46                      ADD R20, R22
+000034 b949                      OUT PIND, R20
+000035 9508                      RET
                                  
                                  INCRE2:
-000031 b949                      OUT PIND, R20
-000032 9553                      INC R21
-000033 705f                      ANDI R21, 0x0F
-000034 2f65                      MOV R22, R21
-000035 1f66                      ROL R22
-000036 1f66                      ROL R22
-000037 1f66                      ROL R22
-000038 1f66                      ROL R22
-000039 2f46                      MOV R20, R22
-00003a 0f42                      ADD R20, R18
-00003b b949                      OUT PIND, R20
-00003c 9508                      RET
+000036 b949                      OUT PIND, R20
+000037 9553                      INC R21
+000038 705f                      ANDI R21, 0x0F
+000039 2f65                      MOV R22, R21
+00003a 1f66                      ROL R22
+00003b 1f66                      ROL R22
+00003c 1f66                      ROL R22
+00003d 1f66                      ROL R22
+00003e 2f46                      MOV R20, R22
+00003f 0f42                      ADD R20, R18
+000040 b949                      OUT PIND, R20
+000041 9508                      RET
                                  
                                  
                                  DECRE2:
-00003d b949                      OUT PIND, R20
-00003e 955a                      DEC R21
-00003f 705f                      ANDI R21, 0x0F
-000040 2f65                      MOV R22, R21
-000041 1f66                      ROL R22
-000042 1f66                      ROL R22
-000043 1f66                      ROL R22
-000044 1f66                      ROL R22
-000045 2f46                      MOV R20, R22
-000046 0f42                      ADD R20, R18
-000047 b949                      OUT PIND, R20
-000048 9508                      RET
+000042 b949                      OUT PIND, R20
+000043 955a                      DEC R21
+000044 705f                      ANDI R21, 0x0F
+000045 2f65                      MOV R22, R21
+000046 1f66                      ROL R22
+000047 1f66                      ROL R22
+000048 1f66                      ROL R22
+000049 1f66                      ROL R22
+00004a 2f46                      MOV R20, R22
+00004b 0f42                      ADD R20, R18
+00004c b949                      OUT PIND, R20
+00004d 9508                      RET
+                                 
+                                 SUMAMUMA:
+00004e b973                      OUT PINB, R23
+00004f 2f75                      MOV R23, R21
+000050 0f72                      ADD R23, R18
+000051 b973                      OUT PINB, R23
+000052 9508                      RET
                                  
                                  //El delay lol
                                  DELAY:
-000049 e030                          LDI     R19, 0
+000053 e030                          LDI     R19, 0
                                  SUBDELAY1:
-00004a 9533                          INC     R19
-00004b 3030                          CPI     R19, 0
-00004c f7e9                          BRNE    SUBDELAY1
-00004d e030                          LDI     R19, 0
+000054 9533                          INC     R19
+000055 3030                          CPI     R19, 0
+000056 f7e9                          BRNE    SUBDELAY1
+000057 e030                          LDI     R19, 0
                                  SUBDELAY2:
-00004e 9533                          INC     R19
-00004f 3030                          CPI     R19, 0
-000050 f7e9                          BRNE    SUBDELAY2
-000051 e030                          LDI     R19, 0
+000058 9533                          INC     R19
+000059 3030                          CPI     R19, 0
+00005a f7e9                          BRNE    SUBDELAY2
+00005b e030                          LDI     R19, 0
                                  SUBDELAY3:
-000052 9533                          INC     R19
-000053 3030                          CPI     R19, 0
-000054 f7e9                          BRNE    SUBDELAY3
-000055 e030                      	    LDI     R19, 0
+00005c 9533                          INC     R19
+00005d 3030                          CPI     R19, 0
+00005e f7e9                          BRNE    SUBDELAY3
+00005f e030                      	    LDI     R19, 0
                                  	SUBDELAY4:
-000056 9533                          INC     R19
-000057 3030                          CPI     R19, 0
-000058 f7e9                          BRNE    SUBDELAY4
+000060 9533                          INC     R19
+000061 3030                          CPI     R19, 0
+000062 f7e9                          BRNE    SUBDELAY4
 
 
 RESOURCE USE INFORMATION
@@ -1171,27 +1182,27 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  15 r17:   4 r18:   8 r19:  12 r20:  16 
-r21:   6 r22:  15 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:  16 r17:   4 r18:   9 r19:  12 r20:  16 
+r21:   7 r22:  15 r23:   5 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   0 r31:   0 
-Registers used: 7 out of 35 (20.0%)
+Registers used: 8 out of 35 (22.9%)
 
 "ATmega328P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   4 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   5 adiw  :   0 and   :   0 
 andi  :   4 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   2 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   4 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   5 cbi   :   0 cbr   :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   6 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   2 cpc   :   0 
 cpi   :   4 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   6 jmp   :   1 
-ld    :   0 ldd   :   0 ldi   :  11 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   0 mov   :   7 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  13 pop   :   0 
-push  :   0 rcall :   0 ret   :   5 reti  :   0 rjmp  :   0 rol   :   8 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   4 
+ld    :   0 ldd   :   0 ldi   :  12 lds   :   0 lpm   :   0 lsl   :   0 
+lsr   :   0 mov   :   8 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  16 pop   :   0 
+push  :   0 rcall :   0 ret   :   6 reti  :   0 rjmp  :   0 rol   :   8 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   5 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
@@ -1201,7 +1212,7 @@ Instructions used: 17 out of 113 (15.0%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000b4    180      0    180   32768   0.5%
+[.cseg] 0x000000 0x0000c8    200      0    200   32768   0.6%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
